@@ -2,16 +2,16 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: http://blog.sudoyc.com
+url: http://blog.aiesst.cn
 date_format: "ordinal"
-title: 夏天
-subtitle: "Everything is stream"
-description: "夏天的个人博客"
-keywords: 夏天, ychost, summer
+title: "Aiesst"
+subtitle: "Less is more"
+description: "Aiesst的个人博客"
+keywords: Aiesst, blog, web
 favicon: /favicon.ico
 timezone: Asia/Shanghai
 encoding: "utf-8"
-source_code: https://github.com/ychost/ychost.github.io
+source_code: https://github.com/Gump-II/Gump-II.github.io
 
 # ---------------- #
 #      Debug       #
@@ -34,11 +34,11 @@ side_bar_repo_limit: 6
 # ---------------- #
 #      Author      #
 # ---------------- #
-author: ychost
-organization: Alibaba Inc.
-organization_url: https://www.alibabagroup.com/cn/global/home
-location: HangZhou, China
-email: ychost@outlook.com
+author: Aiesst
+organization: China Telecom Inc.
+organization_url: 
+location: GuangZhou, China
+email: aiesst@outlook.com
 
 # ---------------- #
 #    Navigation    #
@@ -100,9 +100,9 @@ collections:
 # ---------------- #
 #      Socials     #
 # ---------------- #
-github_username: ychost
-weibo_username:  ychost-wb
-zhihu_username:  ychost
+github_username: aiesst
+weibo_username:  aiesst-wb
+zhihu_username:  aiesst
 
 
 # ---------------- #
@@ -110,7 +110,7 @@ zhihu_username:  ychost
 # ---------------- #
 # support provider: uyan, duoshuo,wangyi,disqus,gitment,changyan,valine
 comments_provider: private
-#duoshuo_username:  ychost
+#duoshuo_username:  aiesst
 #duoshuo_userid: 6279352103223689985
 # ---------------- #
 #    Analytics     #
