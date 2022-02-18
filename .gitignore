@@ -1,0 +1,10 @@
+_site/
+*.swp
+*.~vsd
+\#*\#
+*~
+out/
+# service-worker.js
+.DS_Store
+Gemfile.lock
+_www/

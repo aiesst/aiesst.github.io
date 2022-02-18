@@ -1,0 +1,164 @@
+---
+layout: default
+---
+<link rel="stylesheet" href="/assets/css/mermaid/mermaid.css">
+<link rel="stylesheet" href="/assets/css/mermaid/mermaid.forest.css">
+<style>
+  .PageNavigation {
+  font-size: 14px;
+  display: block;
+  width: auto;
+  overflow: hidden;
+}
+
+.PageNavigation a {
+  display: block;
+  width: 50%;
+  float: left;
+  margin: 1em 0;
+}
+
+.PageNavigation .next {
+  text-align: right;
+}
+
+</style>
+{% if page.pdfLink == null %}
+<section class="collection-head small geopattern" data-pattern-id="{{ page.title | truncate: 15, ''}}">
+  <div class="container">
+    <div class="columns">
+      <div class="column three-fourths">
+        <div class="collection-title">
+          <h1 class="collection-header">{{ page.title }}</h1>
+          <div class="collection-info">
+            {% if page.date %}
+            <span class="meta-info">
+              {% assign year = page.date | date:"%Y" %}
+              <span class="octicon octicon-calendar"></span> 
+              <a href="/archive/#year-{{year}}">{{ page.date | date: "%Y/%m/%d" }}</a>
+            </span>
+            {% endif %}
+            {% for cat in page.categories %}
+            <span class="meta-info">
+              <span class="octicon octicon-file-directory"></span>
+              <a href="/categories/#cat-{{ cat }}"  title="{{ cat }}">{{ cat }}</a>
+            </span>
+            {% endfor %}
+
+            {% for tag in page.tags %}
+            <span class="meta-info">
+              <span class="octicon octicon-tag"></span><a href="/tags/#tag-{{tag}}"> {{ tag }} </a>
+            </span>
+            {% endfor %}
+            <br />　
+            {% if  page.repost == null  %}
+
+            <span >本文为<font color="#10ccbb" style="font-size:18px">「原创」</font>内容，如需转载请注明出处！</span>
+            　　　　　　　　
+            {% else %}
+            <span>本文为<font color="#aabbff" style="font-size:18px">「转载」</font>内容，转载地址为 <a style="text-decoration: underline" target="_blank" href="{{ page.repost[1] }}">{{ page.repost[0] }}</a></span> 　　　
+
+            {% endif %}　　　
+            <br/>
+            <span style="margin:20px"> 
+            {% capture words %}
+              {{ content | strip_html | strip_newlines | split: "" | size }}
+            {% endcapture %}
+            <!-- 本文共 {{ page.content | number_of_words }} 字， -->
+            本文共 {{ content | strip_html | strip_newlines | split: "" | size }} 字，需
+              {% if page.readMins == null %}
+               {{ words  | divided_by: 80 | append: " 分钟阅读" }}
+              {% else %}
+                {{page.readMins}} 分钟阅读
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+  <div class="columns">
+    <div class="column three-fourths" >
+      <article class="article-content markdown-body">
+        {{ content }}
+      </article>
+      <div class="PageNavigation">
+        {% if page.previous.url and page.next.categories[0] != site.private_name or site.private_show %}
+          <a class="prev" href="{{page.previous.url}}"><span style="color:black">上一篇：</span> {{page.previous.title}}</a>
+        {% else %}
+          <a class="prev" href="{{page.previous.url}}"><span style="color:black">上一篇：无</span> </a>
+        {% endif %}
+        {% if page.next.url and page.next.categories[0] != site.private_name or site.private_show %}
+          <a class="next" href="{{page.next.url}}"><span style="color:black">下一篇：</span>{{page.next.title}} </a>
+         {% else %}
+          <a class="next" href="{{page.next.url}}"><span style="color:black">下一篇：无</span> </a>
+        {% endif %}
+      </div>
+      <div class="share">
+        {% include sns-share.html %}
+      </div>
+      <div class="comment">
+        {% include comments.html %}
+      </div>
+
+    </div>
+    <div class="column one-fourth">
+      {% include sidebar-search.html %}
+      {% include sidebar-post-nav.html %}
+    </div>
+  </div>
+</section>
+{% else %}
+<object data="{{ page.pdfLink }}#view=fit" type="application/pdf" width="100%" height="100%" style="height:1000px">
+  <iframe src="{{ page.pdfLink }}#view=fit" id="pdf_iframe" width="100%" height="100%" style="height:1000px;border:none">
+    浏览器不支持 PDF 预览，请下载后阅读: <a href="{{ page.pdfLink }}}">下载 PDF</a>
+  </iframe>
+</object>
+<section class="container content" style="text-align: center">
+  <div class="columns">
+      {% include sns-share.html %}
+      {% include comments.html %}
+</div>
+</section>
+{% endif %}
+<!-- /section.content -->
+
+<script>
+(function(blog,$){
+  blog.encodeHylinks($(".post-cat-hylink"));
+
+  var hylink = $(".markdown-body").find("a");
+  $.each(hylink,function(i,v){
+    $(v).attr("target","_blank");
+  })
+
+}(blog,$))
+</script>
+
+{% if page.pdfLink == null %}
+<script>
+    $(function(){
+         window.onSearchLoad(function(){
+            $(".example").each(function(){
+                var search= $(this).attr("search");
+                var results = window.idx.search(search); 
+                $(this).append("<ul></ul>");
+                var $ul = $(this).children("ul");
+                window.data.then(function(loaded_data) {
+                    results.forEach(function(result) {
+                        var item = loaded_data[result.ref];
+                        //忽略对本文的索引
+                        if(window.location.href.indexOf(item.url) == -1){
+                          var appendString = '<li><a target="_blank" href="' + item.url + '">' + item.title + '</a></li>';
+                          $ul.append(appendString);
+                        }
+                    });
+                });
+            });
+        })
+    });
+</script>
+{% endif %}

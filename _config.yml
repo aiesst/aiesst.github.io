@@ -1,0 +1,161 @@
+# ---------------- #
+#   Main Configs   #
+# ---------------- #
+baseurl:
+url: http://blog.sudoyc.com
+date_format: "ordinal"
+title: 夏天
+subtitle: "Everything is stream"
+description: "夏天的个人博客"
+keywords: 夏天, ychost, summer
+favicon: /favicon.ico
+timezone: Asia/Shanghai
+encoding: "utf-8"
+source_code: https://github.com/ychost/ychost.github.io
+
+
+# ---------------- #
+#      Debug       #
+# ---------------- #
+env: "prod"
+
+# ---------------- #
+#     Private      #
+# ---------------- #
+private_show: false
+private_name: "Private"
+private_exist: true      #true:  the blog-cats-data.json contain private private posts
+                         #false: the blog-cats-data.json not contain private private posts
+
+# ---------------- #
+#       Limit      #
+# ---------------- #
+cat_brif_repo_limit: 3
+side_bar_repo_limit: 6
+
+# ---------------- #
+#      Author      #
+# ---------------- #
+author: ychost
+organization: Alibaba Inc.
+organization_url: https://www.alibabagroup.com/cn/global/home
+location: HangZhou, China
+email: ychost@outlook.com
+
+# ---------------- #
+#    Navigation    #
+# ---------------- #
+navs:
+  -
+    href: /
+    label: 首页
+
+  -
+    href: /categories/
+    label: 分类
+
+  -
+    href: /archive/
+    label: 归档
+
+  -
+    href: /tags/
+    label: 标签
+
+  -
+    href: /about/
+    label: 关于
+  
+
+# ---------------- #
+#       RSS        #
+# ---------------- #
+subscribe_rss: /feed.xml
+
+# ---------------- #
+#      Jekyll      #
+# ---------------- #
+markdown: kramdown
+kramdown:
+    input: GFM
+mermaid:
+     src: https://cdn.bootcss.com/mermaid/7.1.2/mermaid.min.js
+highlighter: rouge
+ihighlight: rouge
+paginate: 8
+lsi: false
+quiet: false
+excerpt_separator: "\n\n"
+permalink: /:year/:month/:day/:title/
+plugins:
+    - rouge
+#     - jekyll-html-pipeline
+    - jekyll-paginate
+    - jekyll-sitemap
+    - jekyll-feed
+    - jemoji
+#     - jekyll-mentions
+collections:
+    wiki:
+        output: true
+        permalink: /wiki/:path/
+
+# ---------------- #
+#      Socials     #
+# ---------------- #
+github_username: ychost
+weibo_username:  ychost-wb
+zhihu_username:  ychost
+
+
+# ---------------- #
+#      Comments    #
+# ---------------- #
+# support provider: uyan, duoshuo,wangyi,disqus,changyan,valine
+comments_provider: valine
+#duoshuo_username:  ychost
+#duoshuo_userid: 6279352103223689985
+
+# ---------------- #
+#    Analytics     #
+# ---------------- #
+baidu_analytics: true
+baidu_analytics_id: a908f0985fa9991b706a3f4a299bb47b
+cnzz_analytics:     false
+cnzz_analytics_id:  1260117641&online=1
+
+
+# ---------------- #
+#      Datas       #
+# ---------------- #
+skill_software_keywords:   [Java, C#, Typescript]
+skill_mobile_app_keywords: [Spring, Hibernate, Netty]
+skill_windows_keywords:    [WPF, EntityFramework, DevExpress]
+
+
+# ---------------- #
+#     SEO          #
+# ---------------- #
+baidu_share: false
+baidu_search: false
+
+# ---------------- #
+#     Exclude      #
+# ---------------- #
+exclude: [_www,_site,resource,remoteBuild.bat,remoteBuild.sh,localDeploy.bat,localDeploy.sh,sw-precache.js,Gemfile,remotePush.sh,remotePush.bat,docker]
+
+# ---------------------#
+# netease music player #   
+# ---------------------# 
+music: /music.163.com/outchain/player?type=0&id=2313686991&auto=1&height=430
+
+# ---------------------#
+#        Flag          #
+# ---------------------# 
+useServiceWorker: false
+useWatermark: false
+
+# ---------------------#
+#        dest          #
+# ---------------------# 
+destination: _www

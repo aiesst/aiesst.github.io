@@ -1,0 +1,1 @@
+bundle exec jekyll server --config _config.local.yml  -P 4008 --host 0.0.0.0 --incremental

@@ -1,0 +1,173 @@
+{% if page.comments != false %} {% case site.comments_provider %} {% when 'disqus' %} {% if site.disqus_username %} {% assign
+load_disqus = true %}
+<!-- Disqus Protection, see https://github.com/mzlogin/mzlogin.github.io/issues/2 -->
+{% if site.disqus_username == 'mzlogin' %} {% assign load_disqus = false %} {% if site.url contains 'mazhuang.org' %} {%
+assign load_disqus = true %} {% endif %} {% endif %} {% if load_disqus %}
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = '{{ site.url }}{{ page.url }}';
+        this.page.identifier = '{{ page.url }}';
+        this.page.title = '{{ page.title }}';
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.type = 'text/javascript';
+        s.async = true;
+        var shortname = '{{ site.disqus_username }}';
+
+        s.src = '//' + shortname + '.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+{% endif %} {% endif %} {% when 'duoshuo' %} {% if site.duoshuo_username %}
+<!-- Duoshuo Comment BEGIN -->
+<!-- 多说评论框 BEGIN -->
+<div class="ds-thread" data-thread-key="{{ page.url }}" data-title="{{ page.title }}" data-url="{{ site.url }}{{ page.url }}"></div>
+<!-- 多说评论框 END -->
+<!-- 多说公共JS代码 BEGIN (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {
+        short_name: "{{ site.duoshuo_username }}"
+    };
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        // ds.src="/assets/js/custom/duoshuo-embed.js";
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+
+</script>
+<!-- 多说公共JS代码 END -->
+<!-- Duoshuo Comment END -->
+{% endif %} {% when 'wangyi' %}
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+    var cloudTieConfig = {
+        url: document.location.href,
+        sourceId: "",
+        productKey: "cc9208df523744cc87f625898c86f3d0",
+        target: "cloud-tie-wrapper"
+    };
+    var yunManualLoad = true;
+    Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+
+</script> {% when 'uyan' %}
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2075696"></script>
+<!-- UY END -->
+
+
+{% when 'changyan' %}
+<!--PC和WAP自适应版-->
+<!-- 打赏-->
+<!-- 如果您配置过sourceid，建议在div标签中配置sourceid、cid(分类id)，没有请忽略  -->
+<div style="text-align: center">
+    <div id="cyReward" role="cylabs" data-use="reward"></div>
+</div>
+<!-- 代码2：用来读取评论框配置，此代码需放置在代码1之后。 -->
+<!-- 如果当前页面有评论框，代码2请勿放置在评论框代码之前。 -->
+<!-- 如果页面同时使用多个实验室项目，以下代码只需要引入一次，只配置上面的div标签即可 -->
+<!-- <script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script> -->
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cys8B776p"></script>
+<div id="SOHUCS"></div>
+<script type="text/javascript"> 
+    (function () {
+        var appid = 'cys8B776p';
+        var conf = 'prod_f5e62400886309bd420b5adfe00275c4';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+        } else { var loadJs = function (d, a) { var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement; var b = document.createElement("script"); b.setAttribute("type", "text/javascript"); b.setAttribute("charset", "UTF-8"); b.setAttribute("src", d); if (typeof a === "function") { if (window.attachEvent) { b.onreadystatechange = function () { var e = b.readyState; if (e === "loaded" || e === "complete") { b.onreadystatechange = null; a() } } } else { b.onload = a } } c.appendChild(b) }; loadJs("https://changyan.sohu.com/upload/changyan.js", function () { window.changyan.api.config({ appid: appid, conf: conf }) }); }
+
+    })();
+
+    //删除建议打赏1-10元
+    $(function () {
+        setTimeout(() => {
+            $(".cy-reward-txt").each(function () {
+                $(this).html("");
+            })
+            $(".power-cy").each(function () {
+                $(this).html("");
+            });
+            $(".section-service-w").each(function () {
+                $(this).html("");
+            });
+        }, 1000);
+    })
+</script> {% when disqus' %}
+<div id="disqus_thread"></div>
+<script>
+
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://sudoyc-com.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+{% when 'gitment' %}
+<div id="container"></div>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        owner: 'ychost',
+        repo: 'blog_comments',
+        oauth: {
+            client_id: '9941a233847e63fbf573',
+            client_secret: 'c858670b97dfddc38b29b243aa3991339058ac2a',
+        },
+    })
+    gitment.render('container')
+</script>
+
+{% when 'valine' %}
+    <div class="comment markdown-body"></div>
+    <!--载入js，在</body>之前插入即可-->
+    <!--Leancloud 操作库:-->
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <!--Valine 的核心代码库-->
+    <script src="/assets/js/valine.min.js"></script>
+    <script>
+        new Valine({
+            // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+            av: AV, 
+            el: '.comment',
+            app_id: '5Vp12Dnkf6n73MefHqK09vjG-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'J6cCta4STGVS5TusVex4XUq8', // 这里填写上面得到的APP KEY
+            placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!', // 留言框占位提示文字
+            smiles_url:'/assets/images/smiles',
+            avatar_url:'/assets/avatar/',
+            avatar_count: 20
+        });
+    </script>
+
+<!-- Changyan Comment END -->
+{% endcase %}{% endif %}
